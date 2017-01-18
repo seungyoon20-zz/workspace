@@ -41,7 +41,7 @@
 //       1 |*** ** ****
 //       0 |+---------+
 //     The precise labelling of the axes may be a bit different than this
-//     example. 
+//     example. yeah!
 
 #ifndef INTARRAY_H
 #define INTARRAY_H
