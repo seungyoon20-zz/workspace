@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-//int ifLeap;
-
-int ifLeap(int NOY){
+int ifLeap(int NOY){ //return 1/0
   if(NOY%400 == 0){
     return 1;
   }
@@ -17,9 +15,8 @@ int ifLeap(int NOY){
 }
 
 
-int getStartingDate(int targetYear){
- 
-  int startingDate = 6;
+int getStartingDate(int targetYear){//get the day of the first day in the year
+  int startingDate = 6;             //provided
   int currentYear = 2000;
   if(targetYear > currentYear){
     while(currentYear < targetYear){
