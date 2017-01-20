@@ -1,0 +1,11 @@
+01/19/2017
+C01-Yixue Wang
+PA1.c
+
+This was entirely my own work.
+
+To run it, please enter its position in terminal and run "gcc -Wall -o PA1 PA1.c" to compile.Then run "./PA1" in the terminal, type in a year(in number) and press enter.
+
+The main fuction prints the title and use scanf function to determine which year to print. In the main funtion the printCarlendar function runs.
+The printCalendar function considers the input of the user and calculate the startingDate of the targetYear.
+The getStartingDate function considers the year that the user wants to know and calculate the starting day of that year according to the fact that the starting day of 2000 was a Saturday.

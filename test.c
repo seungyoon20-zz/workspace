@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <math.h>
+
 
 int main(void){
-  printf("%d", -8%7);
+  unsigned d = 0;
+  printf("%d ", d?(d-1):6);
 }
