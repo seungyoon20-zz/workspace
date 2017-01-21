@@ -21,25 +21,35 @@ int getStartingDate(int targetYear){            //get the day of the first day i
   int currentYear = 2000;
   if(targetYear > currentYear){
     while(currentYear < targetYear){
+        //when current year is less than the target year and larger than 2000
       if(ifLeap(currentYear)){
-	startingDate = (startingDate + 366 % 7) % 7;
+          startingDate = (startingDate + 366 % 7) % 7;
       }
       else{
-	startingDate = (startingDate + 365 % 7) % 7;
+          startingDate = (startingDate + 365 % 7) % 7;
       }
+        //find the starting day of next year
       currentYear++;
+        //current year becomes next year
+        
+        //When the target year is larger than 2000, the current year, which is between target year and 2000 loops through and find the starting day wanted year by year. When current year is less than the target year and larger than 2000, it finds the starting day of next year, and current year becomes next year. 
     }
   }
   else if(targetYear < currentYear){
     currentYear--;
     while(currentYear >= targetYear){
+        //when current year is less than 2000 and larger or equals to the target year
       if(ifLeap(currentYear)){
-	startingDate = (startingDate - (366 % 7)) % 7;
+          startingDate = (startingDate - (366 % 7)) % 7;
       }
       else{
-	startingDate = (startingDate - (365 % 7)) % 7;
+          startingDate = (startingDate - (365 % 7)) % 7;
       }
+        //find the target year of current year
       currentYear--;
+        //current year becomes previous year
+        
+        //When the target year is smaller than 2000, the current year start from 1999 and when current year is less than the target year and larger than 2000, it finds the starting day of next year, and current year becomes previous year.
     }
     if(startingDate < 0){
       startingDate += 7;
@@ -52,7 +62,7 @@ void printDateName(void){                         //print the title of each day
   printf(" SUN MON TUE WED THR FRI SAT\n");
 }//printDateName
 
-int printMonthTitle(int targetYear, int whichMonth){    //print the title of each month 
+int printMonthTitle(int targetYear, int whichMonth){    //print the title of each month
   switch(whichMonth){                                   //and return the number of days in this month    
   case 0:
     printf("January %d\n", targetYear);
@@ -119,7 +129,9 @@ int printMonth(int numOfDays, int startingDate){                   //consider th
   while(currentDay < startingDate){
     //currentDay must be less than startingDate here
       printf("    ");
+      //print blanks according to the position of starting day
       currentDay = (currentDay + 1) % 7;
+      //update the current day of week
   }
   //currentDay must equals or is larger than startingDate here
 
@@ -128,7 +140,7 @@ int printMonth(int numOfDays, int startingDate){                   //consider th
     //date must be less than numOfDays here
       printf("%4d", date);
       if(currentDay == 6){
-	printf("\n");
+          printf("\n");
       }
       currentDay = (currentDay + 1) % 7;
       date++;
@@ -143,7 +155,7 @@ void printCalendar(int targetYear){                               //consider the
   int startingDate = getStartingDate(targetYear);                 //print 12 months using for-loop
   //use for-loop to loop through 12 months  
   for(int i = 0; i < 12; i++){
-    //i must be less than 12 here
+    //i must be less than 12 and larger or equals to 0 here
     startingDate = printMonth(printMonthTitle(targetYear, i), startingDate);
   }
 }//printCarlendar
