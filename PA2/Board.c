@@ -15,5 +15,11 @@ int ifSame(int x, int y, int *ArrayA[], int *ArrayB[]){ //determine if 2 boards 
 
 void printBoard(int x, int y, int *Board[]){
     int i, j;
-    
+    for(i = 0; i < x; i++){
+        for(j = 0; j <y; j++){
+            printf("%d", *(Board[i]+j));
+        }
+        printf("\n");
+    }
+    printf("\n");
 }

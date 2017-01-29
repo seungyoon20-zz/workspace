@@ -1,15 +1,19 @@
 /////CS2303//C01//PA2///WangYixue//ywang20//
 #include <stdio.h>
 #include <stdlib.h>
+#include <curses.h>
+#include <conio.h>
 #include "Life.h"
-
-
 int **B, **C, **D;
+unsigned int x, y, gens;
+
 
 
 int main(int argc, char *argv[]){
+    
     FILE *input;
-    int  x, y, gens, i;
+    int i;
+    int print, pause;
     
     if(argc < 5){
         printf("Need 5 argcs!!!!\n");
@@ -23,6 +27,20 @@ int main(int argc, char *argv[]){
     
     
     input = fopen(argv[4], "r");
+    
+    if (argc >= 6 && *argv[5] == 121){
+        print = 1;
+    }
+    else{
+        print = 0;
+    }
+    
+    if (argc >= 7 && *argv[6] == 121){
+        pause = 1;
+    }
+    else{
+        pause = 0;
+    }
     
     if(!input){
         printf("Unable to open file\n");
@@ -71,14 +89,14 @@ int main(int argc, char *argv[]){
     for(j = x; j < 2*x; j++){
        c = fgetc(input);
        k = y;
-        while(!feof(input)){
+        while(c != 10){
             
             
             if(c == 120){
                 B[j][k] = 1;
             }
             
-            if(c == 10){
+            if(feof(input)){
                 break;
             }
             
@@ -86,37 +104,42 @@ int main(int argc, char *argv[]){
             c = fgetc(input);
         }
     }
+    fclose(input);
     
-    for(int l = 0; l < 3* x; l++){
-        for(int m = 0; m <3 * y; m++){
-                printf("%d", B[l][m]);
+    printBoard(3*x, 3*y, B);
+    
+    
+    int gen = 0;
+    while(gen < gens){
+        if(kbhit() || pause == 0){
+            
+        
+            if(gen % 3 == 0){
+                playOne(3*x, 3*y, C, B);
+                printBoard(3*x, 3*y, C);
+                if(ifStop(3*x, 3*y, C, B, D)){
+                    break;
+                }
+            }
+            if(gen % 3 == 1){
+                playOne(3*x, 3*y, D, C);
+                printBoard(3*x, 3*y, D);
+                if(ifStop(3*x, 3*y, D, C, B)){
+                    break;
+                }
+            }
+            if(gen % 3 ==2){
+                playOne(3*x, 3*y, B, D);
+                printBoard(3*x, 3*y, B);
+                if(ifStop(3*x, 3*y, B, D, C)){
+                    break;
+                }
+            }
+            gen ++;
+        
         }
-        printf("\n");
     }
-    printf("\n");
-    
-    for(int l = 0; l < 3* x; l++){
-        for(int m = 0; m <3 * y; m++){
-            printf("%d", countNeighbor(3*x, 3*y, B, l, m));
-        }
-        printf("\n");
-    }
-    
-    printf("\n");
-    playOne(3*x, 3*y, C, B);
-    
-    for(int l = 0; l < 3 * x; l++){
-        for(int m = 0; m < 3 * y; m++){
-            printf("%d", C[l][m]);
-        }
-        printf("\n");
-    }
-    
-    printf("%d\n", ifStop(3*x, 3*y, B, D, D));
-    printf("%d\n", ifStop(3*x, 3*y, D, C, B));
-    printf("%d\n", ifStop(3*x, 3*y, D, D, D));
-    printf("%d\n", ifSame(3*x, 3*y, C, D));
-    
+  
     
     
     return 0;
