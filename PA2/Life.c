@@ -157,7 +157,9 @@ int main(int argc, char *argv[]){
         
         }
     }
-  
+    free(B);
+    free(C);
+    free(D);
     
     
     return 0;
