@@ -1,11 +1,12 @@
 /////CS2303//C01//PA2///WangYixue//ywang20//
 #include <stdio.h>
 #include <stdlib.h>
-#include <curses.h>
-#include <conio.h>
+//#include <curses.h>
+//#include <conio.h>
 #include "Life.h"
 int **B, **C, **D;
 unsigned int x, y, gens;
+int print, pause;
 
 
 
@@ -13,7 +14,6 @@ int main(int argc, char *argv[]){
     
     FILE *input;
     int i;
-    int print, pause;
     
     if(argc < 5){
         printf("Need 5 argcs!!!!\n");
@@ -111,27 +111,45 @@ int main(int argc, char *argv[]){
     
     int gen = 0;
     while(gen < gens){
-        if(kbhit() || pause == 0){
-            
-        
+        if(pause == 1){
+            printf("Press ENTER to play next generation..\n");
+        }
+        if( pause == 0 || getchar()){
             if(gen % 3 == 0){
                 playOne(3*x, 3*y, C, B);
-                printBoard(3*x, 3*y, C);
-                if(ifStop(3*x, 3*y, C, B, D)){
+                if(print == 1){
+                    printBoard(3*x, 3*y, C);
+                }
+                
+        
+                if(ifStop(3*x, 3*y, C, B, D)|| gen == gens-1){
+                    if(print == 0){
+                        printBoard(3*x, 3*y, C);
+                    }
                     break;
                 }
             }
             if(gen % 3 == 1){
                 playOne(3*x, 3*y, D, C);
-                printBoard(3*x, 3*y, D);
-                if(ifStop(3*x, 3*y, D, C, B)){
+                if(print == 1){
+                    printBoard(3*x, 3*y, D);
+                }
+                if(ifStop(3*x, 3*y, D, C, B)|| gen == gens-1){
+                    if(print == 0){
+                        printBoard(3*x, 3*y, D);
+                    }
                     break;
                 }
             }
             if(gen % 3 ==2){
                 playOne(3*x, 3*y, B, D);
-                printBoard(3*x, 3*y, B);
-                if(ifStop(3*x, 3*y, B, D, C)){
+                if(print == 1){
+                    printBoard(3*x, 3*y, B);
+                }
+                if(ifStop(3*x, 3*y, B, D, C) || gen == gens-1){
+                    if(print == 0){
+                        printBoard(3*x, 3*y, B);
+                    }
                     break;
                 }
             }
