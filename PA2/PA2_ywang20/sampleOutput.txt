@@ -1,8 +1,9 @@
-oumatayuki-no-MacBook-Pro:PA2_ywang20 wangyixue$ ./life  
-Need 5 argcs!!!!
-oumatayuki-no-MacBook-Pro:PA2_ywang20 wangyixue$ ./life 5 5 20 $%@$%@$% y y 
-Unable to open file
-oumatayuki-no-MacBook-Pro:PA2_ywang20 wangyixue$ ./life 5 5 20 testCase-ttt.txt y y 
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ make all
+gcc -g -Wall -c Board.c
+gcc -g -Wall -c Game.c
+gcc -g -Wall -c Life.c
+gcc -g -Wall Board.o Game.o Life.o -lm -o life 
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ ./life 5 5 20 testCase-ttt.txt y y 
                
                
                
@@ -376,6 +377,476 @@ Press ENTER to play next generation..
    X X   X X   
     X     X    
     X     X    
+               
+               
+
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ ./life 5 5 20 ^$%^$%^$%^$^.txt y y 
+Unable to open file
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ ./life
+Need 5 argcs!!!!
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ ./life 5 5 20 testCase-ttt.txt y n
+               
+               
+               
+               
+               
+     X X X     
+     X   X     
+     X   X     
+     X   X     
+     X X X     
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+      X X      
+    XX   XX    
+    XXX XXX    
+    XX   XX    
+      X X      
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+     X   X     
+    X     X    
+   X  X X  X   
+    X     X    
+     X   X     
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+               
+    XX   XX    
+   XXX   XXX   
+    XX   XX    
+               
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+               
+   X X   X X   
+   X  X X  X   
+   X X   X X   
+               
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+               
+    X     X    
+  XX XX XX XX  
+    X     X    
+               
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+               
+   XXX   XXX   
+   X X   X X   
+   XXX   XXX   
+               
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+    X     X    
+   X X   X X   
+  X   X X   X  
+   X X   X X   
+    X     X    
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+    X     X    
+   XXX   XXX   
+  XX XX XX XX  
+   XXX   XXX   
+    X     X    
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+               
+   XXX   XXX   
+  X   X X   X  
+  X   X X   X  
+  X   X X   X  
+   XXX   XXX   
+               
+               
+               
+               
+               
+
+               
+               
+               
+               
+    X     X    
+   XXX   XXX   
+  X X X X X X  
+ XXX XX XX XXX 
+  X X X X X X  
+   XXX   XXX   
+    X     X    
+               
+               
+               
+               
+
+               
+               
+               
+               
+   XXX   XXX   
+               
+ X    X X    X 
+ X    X X    X 
+ X    X X    X 
+               
+   XXX   XXX   
+               
+               
+               
+               
+
+               
+               
+               
+    X     X    
+    X     X    
+    XX   XX    
+               
+XXX  XX XX  XXX
+               
+    XX   XX    
+    X     X    
+    X     X    
+               
+               
+               
+
+               
+               
+               
+               
+   XX     XX   
+    XX   XX    
+ X  X X X X  X 
+ X           X 
+ X  X X X X  X 
+    XX   XX    
+   XX     XX   
+               
+               
+               
+               
+
+               
+               
+               
+               
+   XXX   XXX   
+               
+    X     X    
+XXX         XXX
+    X     X    
+               
+   XXX   XXX   
+               
+               
+               
+               
+
+               
+               
+               
+    X     X    
+    X     X    
+   X X   X X   
+ X           X 
+ X X       X X 
+ X           X 
+   X X   X X   
+    X     X    
+    X     X    
+               
+               
+               
+
+               
+               
+               
+               
+   XXX   XXX   
+    X     X    
+    X     X    
+XX           XX
+    X     X    
+    X     X    
+   XXX   XXX   
+               
+               
+               
+               
+
+               
+               
+               
+    X     X    
+   XXX   XXX   
+               
+               
+               
+               
+               
+   XXX   XXX   
+    X     X    
+               
+               
+               
+
+               
+               
+               
+   XXX   XXX   
+   XXX   XXX   
+    X     X    
+               
+               
+               
+    X     X    
+   XXX   XXX   
+   XXX   XXX   
+               
+               
+               
+
+               
+               
+    X     X    
+   X X   X X   
+               
+   XXX   XXX   
+               
+               
+               
+   XXX   XXX   
+               
+   X X   X X   
+    X     X    
+               
+               
+
+               
+               
+    X     X    
+    X     X    
+   X X   X X   
+    X     X    
+    X     X    
+               
+    X     X    
+    X     X    
+   X X   X X   
+    X     X    
+    X     X    
+               
+               
+
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ ./life 5 5 20 testCase-ttt.txt n y
+               
+               
+               
+               
+               
+     X X X     
+     X   X     
+     X   X     
+     X   X     
+     X X X     
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+Press ENTER to play next generation..
+
+               
+               
+    X     X    
+    X     X    
+   X X   X X   
+    X     X    
+    X     X    
+               
+    X     X    
+    X     X    
+   X X   X X   
+    X     X    
+    X     X    
+               
+               
+
+
+               
+               
+ywang20@CS-2303-VirtualBox:~/workspace/PA2/PA2_ywang20$ ./life 5 5 20 testCase-blinker.txt y y
+               
+               
+               
+               
+               
+               
+     XXX       
+               
+               
+               
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+      X        
+      X        
+      X        
+               
+               
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+               
+     XXX       
+               
+               
+               
+               
+               
+               
                
                
 

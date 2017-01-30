@@ -36,8 +36,8 @@ CS2302-PA2-C01-YixueWang-ywang20
 	row).
 -The game board will be initialized as (3*x)*(3*y) to make sure there is enough space
 
--EX:    ./life 3 3 10 blinker.txt y n
-	./life 3 8 10 acorn.txt y y 
+-EX:    ./life 5 5 10 testCase-ttt.txt y n
+	./life 5 5 10 testCase-ttt.txt
 
 -If you choose to pause between generations, you have to press ENTER to enter next 	
 	generation every time the cmd line tells you to do so.
