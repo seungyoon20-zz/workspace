@@ -1,0 +1,382 @@
+oumatayuki-no-MacBook-Pro:PA2_ywang20 wangyixue$ ./life  
+Need 5 argcs!!!!
+oumatayuki-no-MacBook-Pro:PA2_ywang20 wangyixue$ ./life 5 5 20 $%@$%@$% y y 
+Unable to open file
+oumatayuki-no-MacBook-Pro:PA2_ywang20 wangyixue$ ./life 5 5 20 testCase-ttt.txt y y 
+               
+               
+               
+               
+               
+     X X X     
+     X   X     
+     X   X     
+     X   X     
+     X X X     
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+      X X      
+    XX   XX    
+    XXX XXX    
+    XX   XX    
+      X X      
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+     X   X     
+    X     X    
+   X  X X  X   
+    X     X    
+     X   X     
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+               
+    XX   XX    
+   XXX   XXX   
+    XX   XX    
+               
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+               
+   X X   X X   
+   X  X X  X   
+   X X   X X   
+               
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+               
+    X     X    
+  XX XX XX XX  
+    X     X    
+               
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+               
+   XXX   XXX   
+   X X   X X   
+   XXX   XXX   
+               
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+    X     X    
+   X X   X X   
+  X   X X   X  
+   X X   X X   
+    X     X    
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+    X     X    
+   XXX   XXX   
+  XX XX XX XX  
+   XXX   XXX   
+    X     X    
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+               
+   XXX   XXX   
+  X   X X   X  
+  X   X X   X  
+  X   X X   X  
+   XXX   XXX   
+               
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+    X     X    
+   XXX   XXX   
+  X X X X X X  
+ XXX XX XX XXX 
+  X X X X X X  
+   XXX   XXX   
+    X     X    
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+   XXX   XXX   
+               
+ X    X X    X 
+ X    X X    X 
+ X    X X    X 
+               
+   XXX   XXX   
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+    X     X    
+    X     X    
+    XX   XX    
+               
+XXX  XX XX  XXX
+               
+    XX   XX    
+    X     X    
+    X     X    
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+   XX     XX   
+    XX   XX    
+ X  X X X X  X 
+ X           X 
+ X  X X X X  X 
+    XX   XX    
+   XX     XX   
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+   XXX   XXX   
+               
+    X     X    
+XXX         XXX
+    X     X    
+               
+   XXX   XXX   
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+    X     X    
+    X     X    
+   X X   X X   
+ X           X 
+ X X       X X 
+ X           X 
+   X X   X X   
+    X     X    
+    X     X    
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+               
+   XXX   XXX   
+    X     X    
+    X     X    
+XX           XX
+    X     X    
+    X     X    
+   XXX   XXX   
+               
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+    X     X    
+   XXX   XXX   
+               
+               
+               
+               
+               
+   XXX   XXX   
+    X     X    
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+               
+   XXX   XXX   
+   XXX   XXX   
+    X     X    
+               
+               
+               
+    X     X    
+   XXX   XXX   
+   XXX   XXX   
+               
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+    X     X    
+   X X   X X   
+               
+   XXX   XXX   
+               
+               
+               
+   XXX   XXX   
+               
+   X X   X X   
+    X     X    
+               
+               
+
+Press ENTER to play next generation..
+
+               
+               
+    X     X    
+    X     X    
+   X X   X X   
+    X     X    
+    X     X    
+               
+    X     X    
+    X     X    
+   X X   X X   
+    X     X    
+    X     X    
+               
+               
+
+
