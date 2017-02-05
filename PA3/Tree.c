@@ -4,16 +4,8 @@
 #include <stdlib.h>
 #include "Tree.h"
 
-struct treeItem{
-    char *word;
-    int count;
-    struct treeItem *leftChild, *rightChild, *parentNode;
-    
-};
 
-typedef struct treeItem Node;
 
-Node *root;
 
 Node *findItem(Node *p, char *w) {
     if (p == NULL)
@@ -49,8 +41,4 @@ Node *addItem(Node *p, char *w, Node *parent) {
         p->rightChild = addItem(p->rightChild, w, p);
     }
     return p;
-}
-
-int main(){
-    return 0 ;
 }
