@@ -45,7 +45,9 @@ Node* parseFile(FILE *fp, Node *p, Node *parent){
     	p = addItem(p, word, parent);
     	free(word);
     	count = 0;
+        p = balanceNode(p);
     }
+    
     return p;
 
 }
