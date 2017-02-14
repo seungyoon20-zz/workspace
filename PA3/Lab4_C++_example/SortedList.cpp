@@ -18,7 +18,7 @@ SortedList::SortedList() {
 SortedList::~SortedList(void) {
 	listItem *p = head;
 
-	while (!p) {
+	while (!p) {/Users/wangyixue/Documents/2017TermC/workspace/PA3/Lab4_C++_example/Lab4_example.cpp
 		listItem *q = p -> next;
 		delete p;
 		p = q;
