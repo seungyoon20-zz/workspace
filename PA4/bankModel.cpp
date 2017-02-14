@@ -12,41 +12,37 @@ using std::cin;
 using std::cout;
 using std::endl;
 /*This is the formal bank model which will produce the bank model based on the command line input.
+ *
  */
 int timeRange,avgTime,numCus,numTell,cTime;
 float avgTimeM;
 Event *lastEvent;
 int getShortestWaitingLine(tellerQueue* w[],int length);
 float getSTD(int **a,int row,int col,float avg);
-unsigned int seed = 1234567890;
 
 int main (int argc, char* argv[]){
+//Teller *a = new Teller();
+//a->setServeTime(60,200);
+//cout << a->getServeTime();
+//	Event *head = 0;						// head is for storing the head event
 	eventQueue *head = new eventQueue();
 	cTime =0;
-	
-	if(argc<5) {
-		cout << "You have wrong command line input\n";
-		exit(-1);
+	srand(1234567890);
+	if(argc<4) {
+		cout << "You have wrong command line input";
+		//exit(-1);
 	}
 	 numCus = atoi(argv[1]);
 	 numTell = atoi(argv[2]);
 	 timeRange =atoi(argv[3]);
 	 avgTimeM = atof(argv[4]);
-    if(argc > 5){
-        seed = atoi(argv[5]);
-    }
-    else{
-        seed = time(0);
-    }
-    
-    srand(seed);
 
 	timeRange = timeRange*60;		//Change the Time range from minutes to seconds.
 	avgTime =(int)(avgTimeM*60);   	//change avgTime from float minutes to int seconds
-	cout <<"Average Service Time:(in seconds)"<< avgTime <<endl << "Time Range:(in seconds)"<<timeRange<<endl;
-    tellerQueue *waitingList[numTell]; // Creating
-    int TellerData[numTell][2];		// Create an array of integer to record the teller's data for serving and idling. TellerData[][0] for serving time and TellerData[][1] for idle time
-    int customerData[numCus][2];
+	cout <<avgTime <<endl <<timeRange<<endl;
+	   tellerQueue *waitingList[numTell]; // Creating
+	   int TellerData[numTell][2];		// Create an array of integer to record the teller's data for serving and idling. TellerData[][0] for serving time and TellerData[][1] for idle time
+	   int customerData[numCus][2];
 									//Setting up the bank model right now.
 
 	for(int i=0;i<numCus;i++){					// Build up the event list
@@ -159,9 +155,7 @@ int main (int argc, char* argv[]){
    int totalServeTime =0;
    int totalServeTimeC =0;
    int totalIdleTime =0;
-   int totalSpentT1 = 0;
    int maxWaitTime =0;
-    int avgT1 = 0;
    for(int i=0;i<numTell;i++){
 	   cout<< "The Teller "<<i<<" serves "<<TellerData[i][0]<<" seconds and ildes " <<TellerData[i][1]<<endl;
 	   totalServeTime+= TellerData[i][0];
@@ -171,28 +165,10 @@ int main (int argc, char* argv[]){
 	   cout<< "The Customer "<<i<<" has service "<<customerData[i][0]<<" seconds and waits " <<customerData[i][1]<<endl;
 	   totalServeTimeC+= customerData[i][0];
 	   if(customerData[i][1]>maxWaitTime) maxWaitTime = customerData[i][1];
-       totalSpentT1 = totalSpentT1+customerData[i][0]+customerData[i][1];
    }
-    
-    avgT1 =float(totalSpentT1/head->getServeC());
-    
-    float std = 0;
-    for(int i=0;i<numCus;i++)
-    {
-        int sum=0;
-        for(int j=0;j<2;j++)
-        {
-            sum = sum+customerData[i][j];
-        }
-        std= std+float(sum-avgT1)*float(sum-avgT1);
-    }
-    std=float(std/numCus);
-    std = sqrt(std);
-    
-    cout <<endl<< "Number of customers served "<<head->getServeC()<<endl;
+	cout <<endl<< "Number of customers served "<<head->getServeC()<<endl;
 	cout << "Total time required to serve customers: "<<totalServeTimeC<<endl;
 	cout <<"Number of tellers : "<<numTell<<endl;
-    cout<< "Average time spent by customer is " << avgT1 <<" STD is "<<std<<endl;
 	cout<<"Multiple lines."<<endl;
 	cout<< "Maximum wait time for a customer: "<<maxWaitTime<<endl;
 	cout<<"Total service time : "<<totalServeTime<<"  Total idle time: "<<totalIdleTime<<endl<<endl;
@@ -214,7 +190,7 @@ int main (int argc, char* argv[]){
 	}
 
 	cTime =0;
-	srand(seed);
+	srand(1234567890);
 	tellerQueue *commonLine = new tellerQueue();
 
 	   for(int i=0;i<numTell;i++){					// Add teller event to the beginning of the
@@ -309,28 +285,13 @@ int main (int argc, char* argv[]){
 		   if(customerData[i][1]>maxWaitTime) maxWaitTime2 = customerData[i][1];
 		   totalSpendT2 = totalSpendT2+customerData[i][0]+customerData[i][1];
 	   }
-    
 	   avgT2 =float(totalSpendT2/head->getServeC());
-    
-        float s = 0;
-        for(int i=0;i<numCus;i++)
-        {
-            int sum=0;
-            for(int j=0;j<2;j++)
-            {
-                sum = sum+customerData[i][j];
-            }
-            s= s+float(sum-avgT2)*float(sum-avgT2);
-        }
-        s=float(s/numCus);
-        s = sqrt(s);
-    
 		cout <<endl<< "Number of customers served "<<head->getServeC()<<endl;
 		cout << "Total time required to serve customers: "<<totalServeTimeC2<<endl;
-		cout <<"Average Time spend by customer: "<< avgT2<< " and STD is "<< s<<endl;
+		cout <<"Average Time spend by customer: "<<avgT2<<" and STD is "<<endl;
 		cout <<"Number of tellers : "<<numTell<<endl;
 		cout<<"Common line."<<endl;
-		cout<< "Maximum wait time for a customer: "<< maxWaitTime2<< endl;
+		cout<< "Maximum wait time for a customer: "<<maxWaitTime2<<endl;
 		cout<<"Total service time : "<<totalServeTime2<<"  Total idle time: "<<totalIdleTime2<<endl<<endl;
 
 //		delete[] commonLine;
@@ -354,6 +315,20 @@ int getShortestWaitingLine(tellerQueue* w[],int length){	//find the shortest lin
 	return tNum;
 }
 
-
+float getSTD(int **a,int row,int col,float avg){
+	float s = 0;
+	for(int i=0;i<row;i++)
+	{
+		int sum=0;
+		for(int j=0;j<col;j++)
+		{
+			sum = sum+a[i][j];
+		}
+		s= s+float(sum-avg)*float(sum-avg);
+	}
+	s=float(s/row);
+	s = sqrt(s);
+	return s;
+}
 
 

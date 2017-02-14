@@ -1,8 +1,8 @@
 
 CFLAGS = -g
 
-qSim: bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o
-	g++ -Wall bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o -o qSim
+bankModel: bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o
+	g++ -Wall bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o -o bankModel
 
 bankModel.o: bankModel.cpp Customer.h Teller.h Event.h
 	g++ -Wall -c bankModel.cpp
@@ -22,7 +22,7 @@ eventQueue.o: eventQueue.cpp Event.h
 tellerQueue.o: tellerQueue.cpp Event.h
 	g++ -Wall -c tellerQueue.cpp		
 clean:
-	rm -f qSim bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o
+	rm -f bankModel bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o
 
-all: qSim
+all: bankModel
 

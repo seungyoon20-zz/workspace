@@ -32,7 +32,7 @@ int Customer::getWTime(int cTime){    // Return the wait time for the wait time 
 	return cTime-sTime;
 }
 
-void Customer::setSTIme(int sTIme){		// set the start time of the waiting line.
+void Customer::setSTIme(int sTime){		// set the start time of the waiting line.
 	this->sTime =sTime;
 }
 
