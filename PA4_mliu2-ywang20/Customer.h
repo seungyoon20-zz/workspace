@@ -2,7 +2,7 @@
  * Customer.h
  *
  *  Created on: Feb 10, 2017
- *      Author: mingquan
+ *      Author: mliu2 ywang20
  */
 #include <cstdlib>
 #include "Event.h"
@@ -16,14 +16,12 @@ public:
 	virtual ~Customer();
 	void setArrivalTime(int timeRange);   // for the arrival case
 	void setServiceTime(int ExTime);	  	//   set the execution time for
-	//void setSTIme(int sTime);
-	//int  getWTime(int cTime);
 	void Action(int time,bool isServ,int cTime);
 	bool isTeller();
 	bool isServ();
 	void setCTime(int t);
 	int getCTime();
-	//int getTimeD();
+//	int getTimeD();
 	void setNum(int i);
 	int getNum();
 private:

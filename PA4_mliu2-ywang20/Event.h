@@ -2,8 +2,7 @@
  * Event.h
  *
  *  Created on: Feb 10, 2017
- *      Author: mingquan
- */
+ *      Author: mliu2 ywang20 */
 
 #ifndef EVENT_H_
 #define EVENT_H_
@@ -21,7 +20,7 @@ public:
 	void addEvent(Event *e);
 	Event* getFirstEvent();
 	Event* dequeue();
-//	void addWait(Event *e);
+
 	int getLength();
 	virtual void setExTime(int time);
 	virtual bool isTeller();

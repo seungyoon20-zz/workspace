@@ -1,0 +1,98 @@
+>>>>>>>>> make
+g++ -Wall -c bankModel.cpp
+g++ -Wall -c Customer.cpp
+g++ -Wall  -c Teller.cpp	
+g++ -Wall -c Event.cpp	
+g++ -Wall -c eventQueue.cpp	
+g++ -Wall -c tellerQueue.cpp		
+g++ -Wall bankModel.o Customer.o Teller.o Event.o eventQueue.o tellerQueue.o -o qSim
+
+==================================================================
+>>>>>>>>> ./qSim 50 4 60 2.3
+138
+3600
+The Teller 0 serves 1231 seconds and ildes 2669
+The Teller 1 serves 2116 seconds and ildes 1754
+The Teller 2 serves 1667 seconds and ildes 2241
+The Teller 3 serves 1926 seconds and ildes 1924
+
+Number of customers served 50
+Total time required to serve customers: 6940
+Average Time spend by customer: 166 and STD is 83.0441
+Number of tellers : 4
+Multiple lines.
+Maximum wait time for a customer: 114
+Total service time : 6940  Total idle time: 8588
+
+The Teller 0 serves 1518 seconds and ildes 2917
+The Teller 1 serves 2128 seconds and ildes 1621
+The Teller 2 serves 1867 seconds and ildes 1894
+The Teller 3 serves 1534 seconds and ildes 2328
+
+Number of customers served 50
+Total time required to serve customers: 7047
+Average Time spend by customer: 166 and STD is 82.7923
+Number of tellers : 4
+Common line.
+Maximum wait time for a customer: 94
+Total service time : 7047  Total idle time: 8760
+
+==================================================================
+>>>>>>>>>>>>> ./qSim 50 4 60 2.3 1234567890
+138
+3600
+The Teller 0 serves 2020 seconds and ildes 1821
+The Teller 1 serves 1281 seconds and ildes 2618
+The Teller 2 serves 1808 seconds and ildes 2045
+The Teller 3 serves 1866 seconds and ildes 2060
+
+Number of customers served 50
+Total time required to serve customers: 6975
+Average Time spend by customer: 189 and STD is 102.072
+Number of tellers : 4
+Multiple lines.
+Maximum wait time for a customer: 305
+Total service time : 6975  Total idle time: 8544
+
+The Teller 0 serves 1715 seconds and ildes 1909
+The Teller 1 serves 1887 seconds and ildes 1702
+The Teller 2 serves 1450 seconds and ildes 2126
+The Teller 3 serves 1034 seconds and ildes 2626
+
+Number of customers served 50
+Total time required to serve customers: 6086
+Average Time spend by customer: 164 and STD is 85.7436
+Number of tellers : 4
+Common line.
+Maximum wait time for a customer: 146
+Total service time : 6086  Total idle time: 8363
+
+==================================================================
+>>>>>>>>>>>>> ./qSim 50000 4 200 2.3
+138
+12000
+The Teller 0 serves 2349399 seconds and ildes 18686
+The Teller 1 serves 690702 seconds and ildes 3787
+The Teller 2 serves 3258972 seconds and ildes 17005
+The Teller 3 serves 579346 seconds and ildes 3039
+
+Number of customers served 50000
+Total time required to serve customers: 6878419
+Average Time spend by customer: 25389 and STD is 91558.1
+Number of tellers : 4
+Multiple lines.
+Maximum wait time for a customer: 141099
+Total service time : 6878419  Total idle time: 42517
+
+The Teller 0 serves 4058510 seconds and ildes 23634
+The Teller 1 serves 1950771 seconds and ildes 10026
+The Teller 2 serves 438231 seconds and ildes 2183
+The Teller 3 serves 426445 seconds and ildes 3311
+
+Number of customers served 50000
+Total time required to serve customers: 6873957
+Average Time spend by customer: 24321 and STD is 90323.3
+Number of tellers : 4
+Common line.
+Maximum wait time for a customer: 138564
+Total service time : 6873957  Total idle time: 39154

@@ -2,7 +2,7 @@
  * Event.cpp
  *
  *  Created on: Feb 10, 2017
- *      Author: mingquan
+ *      Author: mliu2 ywang20
  */
 #include <iostream>
 #include "Event.h"
@@ -16,7 +16,12 @@ Event::Event(){
 	prevEvent =0;
 	nextEvent =0;
 }
-
+//Event::Event(Event *prevEvent,Event *nextEvent) {
+//	// TODO Auto-generated constructor stub
+//	this->prevEvent = prevEvent;
+//	this->nextEvent = nextEvent;
+//
+//}
 //Delete the whole tow events connect
 Event::~Event() {
 	// TODO Auto-generated destructor stub
@@ -68,24 +73,14 @@ void Event::setExTime(int time){     			// set the execution time
 int Event::getExTime(){							// set the execution time
 	return exTime;
 }
-//void Event::addWait(Event* e){
-//	Event* a =e;
-//	if(nextEvent ==0)
-//	{
-//	a->setPrevEvent(this);
-//	setNextEvent(e);
-//	}
-//	else
-//		addWait(nextEvent);
-//}
-//
-//Event* Event::getFirstEvent(){                  // find the first event;
-//	if(prevEvent ==0)
-//		return this;
-//	else
-//		return prevEvent->getFirstEvent();
-//
-//}
+
+Event* Event::getFirstEvent(){                  // find the first event;
+	if(prevEvent ==0)
+		return this;
+	else
+		return prevEvent->getFirstEvent();
+
+}
 
 Event* Event::dequeue(){						// will return the second node.
 	Event* a = getFirstEvent();
@@ -116,7 +111,7 @@ int Event::getLength(){							// get the length from this specific event
 }
 
  bool Event::isTeller(){
-	 return 0;
+	 return false;
  }
  int Event::getIdleTime(){
 	 return 0;
