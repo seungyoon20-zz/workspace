@@ -16,7 +16,7 @@ SortedList S;
 
 
 int main(int argc, char *argv[]) {
-
+	std::cout << "Program has started!" << std::endl;
 	for (int i = 1; i < argc; i++)
 		S.InsertItem(atol(argv[i]));	// insert the arguments into list
 

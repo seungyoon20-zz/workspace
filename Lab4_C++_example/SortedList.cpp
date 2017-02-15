@@ -18,7 +18,7 @@ SortedList::SortedList() {
 SortedList::~SortedList(void) {
 	listItem *p = head;
 
-	while (!p) {/Users/wangyixue/Documents/2017TermC/workspace/PA3/Lab4_C++_example/Lab4_example.cpp
+	while (!p) {
 		listItem *q = p -> next;
 		delete p;
 		p = q;
@@ -46,7 +46,7 @@ void SortedList::InsertItem(long itemValue){
 
 	else {
 		listItem *q = head;
-		while ((q -> next) && (q -> next -> payload < itemValue))
+		while (/*(q -> next) &&*/ (q -> next -> payload < itemValue))
 			q = q -> next;
 		p -> next = q -> next;
 		q -> next = p;
