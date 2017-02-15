@@ -46,7 +46,7 @@ void SortedList::InsertItem(long itemValue){
 
 	else {
 		listItem *q = head;
-		while (/*(q -> next) &&*/ (q -> next -> payload < itemValue))
+		while ((q -> next) && (q -> next -> payload < itemValue))
 			q = q -> next;
 		p -> next = q -> next;
 		q -> next = p;
