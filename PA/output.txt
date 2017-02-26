@@ -1,6 +1,0 @@
-ywang20@CS-2303-VirtualBox:~/workspace/Lab1Files$ make clean
-rm -f sinewave.o intarray.o sinewave
-ywang20@CS-2303-VirtualBox:~/workspace/Lab1Files$ make CFLAGS=-O2
-gcc -O2 -Wall -c intarray.c
-gcc -O2 -Wall -c sinewave.c
-gcc -O2 -Wall sinewave.o intarray.o -lm -o sinewave 
