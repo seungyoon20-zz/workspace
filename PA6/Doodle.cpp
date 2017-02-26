@@ -19,8 +19,8 @@ Doodle::~Doodle(){
 void Doodle::breed(int row, int col, Organism** B[]){
     
 }
-void Doodle::move(int row, int col, Organism** B[]){
-    
+Organism*** move(Organism* a,int row, int col, Organism** B[]){
+    return 0;
 }
 void Doodle::print(){
     std::cout << "X";

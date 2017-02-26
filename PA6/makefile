@@ -1,7 +1,7 @@
 #produced by ywang20
 CXXFLAGS = -g -Wall -fmessage-length=0
 
-OBJS =	Organism.o Doodle.o Ant.o PA6.o
+OBJS =	Organism.o Ant.o PA6.o
 
 LIBS =
 
