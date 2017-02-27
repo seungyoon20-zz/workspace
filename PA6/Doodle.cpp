@@ -16,7 +16,7 @@ Doodle::~Doodle(){
 
 
 //overriding
-void Doodle::breed(int row, int col, Organism** B[]){
+void Doodle::breed(int g, Organism** B[]){
     
 }
 Organism*** move(Organism* a,int row, int col, Organism** B[]){

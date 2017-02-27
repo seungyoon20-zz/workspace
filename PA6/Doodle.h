@@ -10,8 +10,8 @@ public:
     
     
     //overriding
-    void breed(int row, int col, Organism** B[]);
-    friend Organism*** move(Organism* a, int row, int col, Organism** B[]);
+    void breed(int g, Organism** B[]);
+    friend Organism*** move(int g, Organism** B[]);
     void print();
     
     int getStepAfterLastEating() const;

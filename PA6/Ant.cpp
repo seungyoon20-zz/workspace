@@ -21,72 +21,73 @@ Ant::~Ant(){
 
 
 //overriding
-void Ant::breed(int row, int col, Organism** B[]){
+void Ant::breed(int g, Organism** B[]){
     
 }
 
-//Organism*** move(Organism* a, int row, int col, Organism** B[]){
-//    step++;
-//    
-//    a->x = a->x-1;
-//    B[a->x][a->y] = a;
-//    delete B[a->x+1][a->y];
-//    return B;
-//
-////    int count = 0;
-////    if(x > 0 && !B[x-1][y]){
-////        count +=1;
-////    }
-////    if(x < row-1 && !B[x+1][y]){
-////        count +=1;
-////    }
-////    if(y > 0 && !B[x][y-1]){
-////        count +=1;
-////    }
-////    if(y < col-1 && !B[x][y+1]){
-////        count +=1;
-////    }
-////
-////    if(count != 0){
-////        int a[count];
-////        for(int i = 0; i < count; i++){
-////            if(x > 0 && !B[x-1][y]){
-////                a[i] = 0;
-////            }
-////            if(x < row-1 && !B[x+1][y]){
-////                a[i] = 1;
-////            }
-////            if(y > 0 && !B[x][y-1]){
-////                a[i] = 2;
-////            }
-////            if(y < col-1 && !B[x][y+1]){
-////                a[i] = 3;
-////            }
-////        }
-////        int c = int(rand()%count);
-////        if(a[c] == 0){
-////            x -= 1;
-////            B[x][y] = this;
-////            B[x+1][y] = nullptr;
-////        }
-////        else if(a[c] == 1){
-////            x += 1;
-////            B[x][y] = this;
-////            B[x-1][y] = nullptr;
-////        }
-////        else if(a[c] == 2){
-////            y -= 1;
-////            B[x][y] = this;
-////            B[x][y+1] = nullptr;
-////        }
-////        else if(a[c] == 3){
-////            y += 1;
-////            B[x][y] = this;
-////            B[x][y-1] = nullptr;
-////        }
-////    }
-////    return B;
-//}
+Organism*** Ant::move(int g, Organism** B[]){
+    int count = 0;
+    if(x > 0 && !B[x-1][y]){
+        count +=1;
+    }
+    if(x < g-1 && !B[x+1][y]){
+        count +=1;
+    }
+    if(y > 0 && !B[x][y-1]){
+        count +=1;
+    }
+    if(y < g-1 && !B[x][y+1]){
+        count +=1;
+    }
+
+    if(count != 0){
+        int *s = new int[count];
+        int i = 0;
+        if(x > 0 && !B[x-1][y]){
+            s[i] = 0;
+            i++;
+        }
+        if(x < g-1 && !B[x+1][y]){
+            s[i] = 1;
+            i++;
+        }
+        if(y > 0 && !B[x][y-1]){
+            s[i] = 2;
+            i++;
+        }
+        if(y < g-1 && !B[x][y+1]){
+            s[i] = 3;
+            i++;
+        }
+        
+        int c = int(rand()%count);
+        if(s[c] == 0){
+            B[x-1][y] = new Ant(x-1, y, step);
+            delete this;
+            B[x][y] = 0;
+            return B;
+        }
+        else if(s[c] == 1){
+            B[x+1][y] = new Ant(x+1, y, step);
+            delete this;
+            B[x][y] = 0;
+            return B;
+        }
+        else if(s[c] == 2){
+            B[x][y-1] = new Ant(x, y-1, step);
+            delete this;
+            B[x][y] = 0;
+            return B;
+        }
+        else if(s[c] == 3){
+            B[x][y+1] = new Ant(x, y+1, step);
+            delete this;
+            B[x][y] = 0;
+            return B;
+        }
+    }
+    return B;
+}
 
 void Ant::print(){
     std::cout << "O";
