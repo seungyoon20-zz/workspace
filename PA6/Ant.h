@@ -11,7 +11,7 @@ public:
     
     
     //overriding
-    void breed(int g, Organism** B[]);
+    Organism*** breed(int g, Organism** B[]);
     Organism*** move( int g, Organism** B[]);
     void print();
     

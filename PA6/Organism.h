@@ -7,7 +7,7 @@ public:
     Organism(int _x, int _y, int _step);
     virtual ~Organism();
     
-    virtual void breed(int g, Organism** B[]) = 0;
+    virtual Organism*** breed(int g, Organism** B[]) = 0;
     virtual Organism*** move(int g, Organism** B[]) = 0;
     virtual void print() = 0;
     void setX(int _x);

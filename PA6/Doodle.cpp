@@ -16,10 +16,10 @@ Doodle::~Doodle(){
 
 
 //overriding
-void Doodle::breed(int g, Organism** B[]){
-    
+Organism*** Doodle::breed(int g, Organism** B[]){
+    return 0;
 }
-Organism*** move(Organism* a,int row, int col, Organism** B[]){
+Organism*** Doodle::move(int g, Organism** B[]){
     return 0;
 }
 void Doodle::print(){
