@@ -17,6 +17,8 @@ public:
 
     void addStep();
     int getStep();
+    
+    virtual bool isAnt() = 0;
 protected:
     int step;
     int x;

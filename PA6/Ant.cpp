@@ -160,3 +160,7 @@ Organism*** Ant::move(int g, Organism** B[]){
 void Ant::print(){
     std::cout << "O";
 }
+
+bool Ant::isAnt(){
+    return true;
+}

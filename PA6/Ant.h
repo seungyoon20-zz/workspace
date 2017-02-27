@@ -14,7 +14,7 @@ public:
     Organism*** breed(int g, Organism** B[]);
     Organism*** move( int g, Organism** B[]);
     void print();
-    
+    bool isAnt();
 
 };
 #endif
