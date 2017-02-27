@@ -14,6 +14,9 @@ public:
     void setY(int _y);
     int getX();
     int getY();
+
+    void addStep();
+    int getStep();
 protected:
     int step;
     int x;

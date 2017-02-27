@@ -1,11 +1,11 @@
 #produced by ywang20
 CXXFLAGS = -g -Wall -fmessage-length=0
 
-OBJS =	Organism.o Doodle.o Ant.o PA6.o
+OBJS =	Rational.o PA5.o
 
 LIBS =
 
-TARGET =	PA6
+TARGET =	PA5
 
 $(TARGET):	$(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LIBS)

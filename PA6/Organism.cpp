@@ -27,6 +27,15 @@ void Organism::setY(int _y){
 int Organism::getX(){
     return x;
 }
+
 int Organism::getY(){
     return y;
+}
+
+void Organism::addStep(){
+	step += 1;
+}
+
+int Organism::getStep(){
+	return step;
 }
