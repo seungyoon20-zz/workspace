@@ -1,11 +1,14 @@
 #include "Ant.h"
 #include <iostream>
+#include <cstdlib>
+
+
 
 Ant::Ant(): Organism(){
     
 }
 Ant::Ant(int _x, int _y): Organism(_x, _y){
-    
+#include <cstdlib>
 }
 //Ant::Ant(const Ant& a):Organism(a.x, a.y, a.step){
 //    
@@ -26,6 +29,7 @@ void Ant::breed(int g, Organism** B[]){
 }
 
 Organism*** Ant::move(int g, Organism** B[]){
+	srand(time(0));
     int count = 0;
     if(x > 0 && !B[x-1][y]){
         count +=1;
@@ -61,28 +65,29 @@ Organism*** Ant::move(int g, Organism** B[]){
         }
         
         int c = int(rand()%count);
+
         if(s[c] == 0){
             B[x-1][y] = new Ant(x-1, y, step);
-            delete this;
             B[x][y] = 0;
+            delete this;
             return B;
         }
         else if(s[c] == 1){
             B[x+1][y] = new Ant(x+1, y, step);
-            delete this;
             B[x][y] = 0;
+            delete this;
             return B;
         }
         else if(s[c] == 2){
             B[x][y-1] = new Ant(x, y-1, step);
-            delete this;
             B[x][y] = 0;
+            delete this;
             return B;
         }
         else if(s[c] == 3){
             B[x][y+1] = new Ant(x, y+1, step);
-            delete this;
             B[x][y] = 0;
+            delete this;
             return B;
         }
     }
