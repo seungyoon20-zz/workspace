@@ -1,10 +1,13 @@
 #include "Organism.h"
 #include "Ant.h"
-//#include "Doodle.h"
+#include "Doodle.h"
 #include <iostream>
 #include <cstdlib>
+#include <queue>
 
 using std::cout;
+using std::queue;
+
 
 void printBoard(int row, int col, Organism** B[]){
     
@@ -19,104 +22,133 @@ void printBoard(int row, int col, Organism** B[]){
         }
         cout << "\n";
     }
+    cout << "\n\n";
 }
 
-//Organism*** AntMove(Organism* a, Organism** B[], int g){
-//	int nowX = a->getX();
-//	int nowY = a->getY();
-//	int nowStep = a->getStep()+1;
-//
-//    
-//	int count = 0;
-//	if(nowX > 0 && !B[nowX-1][nowY]){
-//		count += 1;
-//	}
-//	if(nowX < (g-1) && !B[nowX+1][nowY]){
-//		count += 1;
-//	}
-//	if(nowY >0 && !B[nowX][nowY-1]){
-//		count += 1;
-//	}
-//	if(nowY < g-1 && !B[nowX][nowY+1]){
-//		count += 1;
-//	}
-//
-//	if(count != 0){
-//		int *s = new int[count];
-//		int i = 0;
-//		if(nowX > 0 && !B[nowX-1][nowY]){
-//			s[i] = 0;
-//	        i++;
-//		}
-//		if(nowX < g-1 && !B[nowX+1][nowY]){
-//			s[i] = 1;
-//			i++;
-//		}
-//		if(nowY > 0 && !B[nowX][nowY-1]){
-//	        s[i] = 2;
-//	        i++;
-//	    }
-//		if(nowY < g-1 && !B[nowX][nowY+1]){
-//	        s[i] = 3;
-//	        //std::cout << s[i];
-//	        i++;
-//	    }
-//
-//	    int c = int(rand()%count);
-//	    if(s[c] == 0){
-//	    	B[nowX-1][nowY] = new Ant(nowX-1, nowY, nowStep);
-//	    	delete a;
-//	    	B[nowX][nowY] = 0;
-//	    	return B;
-//	    }
-//	    else if(s[c] == 1){
-//	    	B[nowX+1][nowY] = new Ant(nowX+1, nowY, nowStep);
-//	    	delete a;
-//	    	B[nowX][nowY] = 0;
-//	    	return B;
-//	    }
-//	    else if(s[c] == 2){
-//	        B[nowX][nowY-1] = new Ant(nowX, nowY-1, nowStep);
-//	        delete a;
-//	        B[nowX][nowY] = 0;
-//	        return B;
-//	    }
-//	    else if(s[c] == 3){
-//	        B[nowX][nowY+1] = new Ant(nowX, nowY+1, nowStep);
-//	        delete a;
-//	        B[nowX][nowY] = 0;
-//	        return B;
-//	    }
-//	}
-//
-//	return B;
-//}
 
 int main(int argc, char* argv[]){
-    Organism*** Board;
-    int seed;
-    
+	Organism*** Board;
 
-    seed = time(0);
+    int grid = (argc>=2)? atoi(argv[1]): 5;
+    int numOfDoodles = (argc>=3)? atoi(argv[2]): 1;
+    int numOfAnts = (argc>=4)? atoi(argv[3]): 0;
+    int timeStep = (argc >= 5 )? atoi(argv[4]): 10;
+    int seed = (argc >= 6)? atoi(argv[5]): 2;
+    int ifPause = (argc >= 7)? atoi(argv[6]): 0;
+
+    if(numOfDoodles + numOfAnts > grid*grid){
+    	cout << "Too many organisms!";
+    	exit(-1);
+    }
+    
     srand(seed);
-    Board = new Organism**[3];
-    Board[0] = new Organism*[3];
-    Board[1] = new Organism*[3];
-    Board[2] = new Organism*[3];
+    Board = new Organism**[grid];
+    for(int i = 0; i < grid; i++){
+    	Board[i] = new Organism*[grid];
+    }
     
-    Board[2][0] = new Ant(2, 0);
-    printBoard(3, 3, Board);
-    cout << "\n";
-    Board = Board[2][0]->move(3, Board);
-    printBoard(3, 3, Board);
 
 
-    delete[] Board[0];
-    delete[] Board[1];
-    delete[] Board[2];
+    queue <Organism*> ants;
+    queue <Organism*> doodles;
+    int r = int(rand()%grid);
+    int c = int(rand()%grid);
+
+    for(int i = 0; i < numOfAnts; i++){
+    	while(Board[r][c]){
+    		r = int(rand()%grid);
+    		c = int(rand()%grid);
+    	}
+    	Board[r][c] = new Ant(r, c, true);
+    	ants.push(Board[r][c]);
+    }
+
+    for(int i = 0; i < numOfDoodles; i++){
+        while(Board[r][c]){
+        	r = int(rand()%grid);
+       		c = int(rand()%grid);
+       	}
+       	Board[r][c] = new Doodle(r, c, true);
+       	doodles.push(Board[r][c]);
+    }
+
+    printBoard(grid, grid, Board);
+
+     cout << "\n\n";
+     Organism* iterator = doodles.front();
+    //printBoard(grid, grid, Board);
+    //cout << iterator->getX();
+    //cout << iterator->getY();
+    Board = iterator->move(grid,Board);
+
+    printBoard(grid, grid, Board);
+    cout << iterator->getX();
+    cout << iterator->getY();
+    cout << iterator->getStep();
+    cout << iterator->getStepAfterLastEating();
+
+    cout << "\n\n";
+    Board = iterator->move(grid,Board);
+
+        printBoard(grid, grid, Board);
+        cout << iterator->getX();
+        cout << iterator->getY();
+        cout << iterator->getStep();
+        cout << iterator->getStepAfterLastEating();
+
+        cout << "\n\n";
+        Board = iterator->breed(grid,Board);
+
+            printBoard(grid, grid, Board);
+            cout << iterator->getX();
+            cout << iterator->getY();
+            cout << iterator->getStep();
+            cout << iterator->getStepAfterLastEating();
+
+
+
+            cout << "\n\n";
+            Board = iterator->move(grid,Board);
+
+                printBoard(grid, grid, Board);
+                cout << iterator->getX();
+                cout << iterator->getY();
+                cout << iterator->getStep();
+                cout << iterator->getStepAfterLastEating();
+
+                Board = iterator->move(grid,Board);
+
+
+
+//    //for(int i = 0; i < timeStep; i++){
+//    	int j = 0;
+//    	while(j <= 10&& doodles.front() && doodles.front()->getStatus()){
+//    		iterator = doodles.front();
+//    		Board = iterator->move(grid, Board);
+//    		doodles.push(iterator);
+//    		printBoard(grid, grid, Board);
+//    		if(iterator->getStepAfterLastEating() >= 3){
+//    			//Board = iterator->starvation(grid, Board);
+//    		}
+//    		//else if(iterator->getStep() >= 8){
+//    		Board = iterator->breed(grid, Board);
+//    		doodles.push(iterator);
+//    		//}
+//
+//
+//    		printBoard(grid, grid, Board);
+//    		doodles.pop();
+//    		j++;
+//    	}
+//
+//    //}
     
+    for(int i = 0; i < grid; i++){
+    	delete[] Board[i];
+    }
     delete[] Board;
     Board = 0;
+
     return 0;
 }
 

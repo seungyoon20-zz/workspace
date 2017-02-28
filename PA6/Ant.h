@@ -4,8 +4,8 @@
 class Ant : public Organism{
 public:
     Ant();
-    Ant(int _x, int _y);
-    Ant(int _x, int _y, int _step);
+    Ant(int _x, int _y, bool _ifNeedBehave);
+    Ant(int _x, int _y, int _step, bool _ifNeedBehave);
     //Ant(const Ant& a);
     ~Ant();
     

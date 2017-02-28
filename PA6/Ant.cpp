@@ -7,13 +7,12 @@
 Ant::Ant(): Organism(){
     
 }
-Ant::Ant(int _x, int _y): Organism(_x, _y){
-#include <cstdlib>
+Ant::Ant(int _x, int _y, bool _ifNeedBehave): Organism(_x, _y, _ifNeedBehave){
+
 }
-//Ant::Ant(const Ant& a):Organism(a.x, a.y, a.step){
-//    
-//}
-Ant::Ant(int _x, int _y, int _step):Organism(_x, _y, _step){
+
+
+Ant::Ant(int _x, int _y, int _step, bool _ifNeedBehave):Organism(_x, _y, _step, _ifNeedBehave){
 
 }
 Ant::~Ant(){
@@ -64,25 +63,25 @@ Organism*** Ant::breed(int g, Organism** B[]){
         int c = int(rand()%count);
 
         if(s[c] == 0){
-            B[x-1][y] = new Ant(x-1, y);
+            B[x-1][y] = new Ant(x-1, y , false);
             //B[x][y] = 0;
             //delete this;
             return B;
         }
         else if(s[c] == 1){
-            B[x+1][y] = new Ant(x+1, y);
+            B[x+1][y] = new Ant(x+1, y, false);
             //B[x][y] = 0;
             //delete this;
             return B;
         }
         else if(s[c] == 2){
-            B[x][y-1] = new Ant(x, y-1);
+            B[x][y-1] = new Ant(x, y-1, false);
             //B[x][y] = 0;
             //delete this;
             return B;
         }
         else if(s[c] == 3){
-            B[x][y+1] = new Ant(x, y+1);
+            B[x][y+1] = new Ant(x, y+1, false);
             //B[x][y] = 0;
             //delete this;
             return B;
@@ -130,25 +129,25 @@ Organism*** Ant::move(int g, Organism** B[]){
         int c = int(rand()%count);
 
         if(s[c] == 0){
-            B[x-1][y] = new Ant(x-1, y, step);
+            B[x-1][y] = new Ant(x-1, y, step, false);
             B[x][y] = 0;
             delete this;
             return B;
         }
         else if(s[c] == 1){
-            B[x+1][y] = new Ant(x+1, y, step);
+            B[x+1][y] = new Ant(x+1, y, step, false);
             B[x][y] = 0;
             delete this;
             return B;
         }
         else if(s[c] == 2){
-            B[x][y-1] = new Ant(x, y-1, step);
+            B[x][y-1] = new Ant(x, y-1, step, false);
             B[x][y] = 0;
             delete this;
             return B;
         }
         else if(s[c] == 3){
-            B[x][y+1] = new Ant(x, y+1, step);
+            B[x][y+1] = new Ant(x, y+1, step, false);
             B[x][y] = 0;
             delete this;
             return B;

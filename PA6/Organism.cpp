@@ -1,14 +1,14 @@
 #include "Organism.h"
 #include <iostream>
 
-Organism::Organism(): step(0), x(0), y(0){
+Organism::Organism(): step(0), x(0), y(0), ifNeedBehave(true){
     
 }
 
-Organism::Organism(int _x, int _y):step(0), x(_x), y(_y){
+Organism::Organism(int _x, int _y, bool _ifNeedBehave):step(0), x(_x), y(_y), ifNeedBehave(_ifNeedBehave){
     
 }
-Organism::Organism(int _x, int _y, int _step):step(_step), x(_x), y(_y){
+Organism::Organism(int _x, int _y, int _step, bool _ifNeedBehave):step(_step), x(_x), y(_y), ifNeedBehave(_ifNeedBehave){
     
 }
 Organism::~Organism(){
@@ -38,4 +38,15 @@ void Organism::addStep(){
 
 int Organism::getStep(){
 	return step;
+}
+
+bool Organism::getStatus(){
+	return ifNeedBehave;
+}
+
+int Organism::getStepAfterLastEating(){
+	return 0;
+}
+Organism*** Organism::starvation(int g, Organism** B[]){
+	return B;
 }
