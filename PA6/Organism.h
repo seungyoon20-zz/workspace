@@ -19,6 +19,7 @@ public:
     void addStep();
     int getStep();
     bool getStatus();
+    void resetStatus();
     
     virtual int getStepAfterLastEating();
     virtual bool isAnt() = 0;

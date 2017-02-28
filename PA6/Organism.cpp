@@ -44,6 +44,9 @@ bool Organism::getStatus(){
 	return ifNeedBehave;
 }
 
+void Organism::resetStatus(){
+	ifNeedBehave = true;
+}
 int Organism::getStepAfterLastEating(){
 	return 0;
 }

@@ -24,7 +24,6 @@ Doodle::~Doodle(){
 
 //overriding
 Organism*** Doodle::breed(int g, Organism** B[]){
-
 	int count = 0;
 	    if(x > 0 && !B[x-1][y]){
 	        count +=1;
@@ -66,17 +65,13 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        	x-=1;
 	        	B[x][y] = this;
 	        	B[x+1][y] = new Doodle(x+1, y, step, false, stepAfterEat);
-	        	step = 0;
 	        	stepAfterEat = 0;
 	            return B;
-//	        	x-= 1;
-//	        	B[x+1][y] = new Doodle(x+1, y, step, false, stepAfter)
 	        }
 	        else if(s[c] == 1){
 	        	x+=1;
 	            B[x][y] = this;
 	            B[x-1][y] = new Doodle(x-1, y, step, false, stepAfterEat);
-	            step = 0;
 	            stepAfterEat = 0;
 	            return B;
 	        }
@@ -84,7 +79,6 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        	y-=1;
 	        	B[x][y] = this;
 	        	B[x][y+1] = new Doodle(x, y+1, step, false, stepAfterEat);
-	        	step = 0;
 	        	stepAfterEat = 0;
 	            return B;
 	        }
@@ -92,11 +86,11 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        	y+=1;
 	        	B[x][y] = this;
 	        	B[x][y-1] = new Doodle(x, y-1, step, false, stepAfterEat);
-	        	step = 0;
 	        	stepAfterEat = 0;
 	            return B;
 	        }
 	    }
+
 	    return B;
 }
 
@@ -127,7 +121,6 @@ Organism*** Doodle::move(int g, Organism** B[]){
     
     if(count != 0){
     	stepAfterEat = 0;
-
         int *s = new int[count];
         int i = 0;
         if(x > 0 && B[x-1][y] && B[x-1][y]->isAnt()){
@@ -258,6 +251,7 @@ Organism*** Doodle::move(int g, Organism** B[]){
     }
     return B;
 }
+
 void Doodle::print(){
     std::cout << "X";
 }
