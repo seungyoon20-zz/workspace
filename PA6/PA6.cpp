@@ -35,7 +35,10 @@ int main(int argc, char* argv[]){
     int timeStep = (argc >= 5 )? atoi(argv[4]): 10;
     int seed = (argc >= 6)? atoi(argv[5]): 2;
     int ifPause = (argc >= 7)? atoi(argv[6]): 0;
-
+    
+    
+    Organism* iterator;
+    
     if(numOfDoodles + numOfAnts > grid*grid){
     	cout << "Too many organisms!";
     	exit(-1);
@@ -74,74 +77,81 @@ int main(int argc, char* argv[]){
 
     printBoard(grid, grid, Board);
 
-     cout << "\n\n";
-     Organism* iterator = doodles.front();
-    //printBoard(grid, grid, Board);
-    //cout << iterator->getX();
-    //cout << iterator->getY();
-    Board = iterator->move(grid,Board);
+//     cout << "\n\n";
+//     Organism* iterator = doodles.front();
+//    //printBoard(grid, grid, Board);
+//    //cout << iterator->getX();
+//    //cout << iterator->getY();
+//    Board = iterator->move(grid,Board);
+//
+//    printBoard(grid, grid, Board);
+//    cout << iterator->getX();
+//    cout << iterator->getY();
+//    cout << iterator->getStep();
+//    cout << iterator->getStepAfterLastEating();
+//
+//    cout << "\n\n";
+//    Board = iterator->move(grid,Board);
+//
+//        printBoard(grid, grid, Board);
+//        cout << iterator->getX();
+//        cout << iterator->getY();
+//        cout << iterator->getStep();
+//        cout << iterator->getStepAfterLastEating();
+//
+//        cout << "\n\n";
+//        Board = iterator->breed(grid,Board);
+//
+//            printBoard(grid, grid, Board);
+//            cout << iterator->getX();
+//            cout << iterator->getY();
+//            cout << iterator->getStep();
+//            cout << iterator->getStepAfterLastEating();
+//
+//
+//
+//            cout << "\n\n";
+//            Board = iterator->move(grid,Board);
+//
+//                printBoard(grid, grid, Board);
+//                cout << iterator->getX();
+//                cout << iterator->getY();
+//                cout << iterator->getStep();
+//                cout << iterator->getStepAfterLastEating();
+//
+//                Board = iterator->move(grid,Board);
 
-    printBoard(grid, grid, Board);
-    cout << iterator->getX();
-    cout << iterator->getY();
-    cout << iterator->getStep();
-    cout << iterator->getStepAfterLastEating();
 
-    cout << "\n\n";
-    Board = iterator->move(grid,Board);
 
-        printBoard(grid, grid, Board);
-        cout << iterator->getX();
-        cout << iterator->getY();
-        cout << iterator->getStep();
-        cout << iterator->getStepAfterLastEating();
-
-        cout << "\n\n";
-        Board = iterator->breed(grid,Board);
-
+    for(int i = 0; i < timeStep; i++){
+    	while(doodles.front() && doodles.front()->getStatus()){
+    		iterator = doodles.front();
+    		Board = iterator->move(grid, Board);
+    		if(iterator->getStepAfterLastEating() >= 3){
+    			Board = iterator->starvation(grid, Board);
+                continue;
+    		}
+            doodles.push(iterator);
+    		if(iterator->getStep() >= 8){
+                Board = iterator->breed(grid, Board);
+                doodles.push(iterator);
+    		}
+            doodles.pop();
+    	}
+        while(ants.front() && ants.front()->getStatus()){
+            iterator = ants.front();
+            Board = iterator->move(grid, Board);
+            doodles.push(iterator);
+            if(iterator->getStep() >= 8){
+                Board = iterator->breed(grid, Board);
+                ants.push(iterator);
+            }
+            ants.pop();
+        }
+        if(ifPause == 0|| ifPause ==1 || i%ifPause == ifPause-1){
             printBoard(grid, grid, Board);
-            cout << iterator->getX();
-            cout << iterator->getY();
-            cout << iterator->getStep();
-            cout << iterator->getStepAfterLastEating();
-
-
-
-            cout << "\n\n";
-            Board = iterator->move(grid,Board);
-
-                printBoard(grid, grid, Board);
-                cout << iterator->getX();
-                cout << iterator->getY();
-                cout << iterator->getStep();
-                cout << iterator->getStepAfterLastEating();
-
-                Board = iterator->move(grid,Board);
-
-
-
-//    //for(int i = 0; i < timeStep; i++){
-//    	int j = 0;
-//    	while(j <= 10&& doodles.front() && doodles.front()->getStatus()){
-//    		iterator = doodles.front();
-//    		Board = iterator->move(grid, Board);
-//    		doodles.push(iterator);
-//    		printBoard(grid, grid, Board);
-//    		if(iterator->getStepAfterLastEating() >= 3){
-//    			//Board = iterator->starvation(grid, Board);
-//    		}
-//    		//else if(iterator->getStep() >= 8){
-//    		Board = iterator->breed(grid, Board);
-//    		doodles.push(iterator);
-//    		//}
-//
-//
-//    		printBoard(grid, grid, Board);
-//    		doodles.pop();
-//    		j++;
-//    	}
-//
-//    //}
+        }
+    }
     
     for(int i = 0; i < grid; i++){
     	delete[] Board[i];

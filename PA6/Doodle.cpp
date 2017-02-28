@@ -65,7 +65,7 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        if(s[c] == 0){
 	        	x-=1;
 	        	B[x][y] = this;
-	        	B[x+1][y] = new Doodle(x+1, y, step, true, stepAfterEat);
+	        	B[x+1][y] = new Doodle(x+1, y, step, false, stepAfterEat);
 	        	step = 0;
 	        	stepAfterEat = 0;
 	            return B;
@@ -75,7 +75,7 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        else if(s[c] == 1){
 	        	x+=1;
 	            B[x][y] = this;
-	            B[x-1][y] = new Doodle(x-1, y, step, true, stepAfterEat);
+	            B[x-1][y] = new Doodle(x-1, y, step, false, stepAfterEat);
 	            step = 0;
 	            stepAfterEat = 0;
 	            return B;
@@ -83,7 +83,7 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        else if(s[c] == 2){
 	        	y-=1;
 	        	B[x][y] = this;
-	        	B[x][y+1] = new Doodle(x, y+1, step, true, stepAfterEat);
+	        	B[x][y+1] = new Doodle(x, y+1, step, false, stepAfterEat);
 	        	step = 0;
 	        	stepAfterEat = 0;
 	            return B;
@@ -91,7 +91,7 @@ Organism*** Doodle::breed(int g, Organism** B[]){
 	        else if(s[c] == 3){
 	        	y+=1;
 	        	B[x][y] = this;
-	        	B[x][y-1] = new Doodle(x, y-1, step, true, stepAfterEat);
+	        	B[x][y-1] = new Doodle(x, y-1, step, false, stepAfterEat);
 	        	step = 0;
 	        	stepAfterEat = 0;
 	            return B;
@@ -109,7 +109,8 @@ Organism*** Doodle::starvation(int g, Organism** B[]){
 Organism*** Doodle::move(int g, Organism** B[]){
     stepAfterEat +=1;
     step += 1;
-
+    ifNeedBehave = false;
+    
     int count = 0;
     if(x > 0 && B[x-1][y] && B[x-1][y]->isAnt()){
         count +=1;

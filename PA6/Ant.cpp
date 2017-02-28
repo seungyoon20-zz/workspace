@@ -63,27 +63,37 @@ Organism*** Ant::breed(int g, Organism** B[]){
         int c = int(rand()%count);
 
         if(s[c] == 0){
-            B[x-1][y] = new Ant(x-1, y , false);
-            //B[x][y] = 0;
-            //delete this;
+            x-=1;
+            B[x][y] = this;
+            B[x+1][y] = new Ant(x+1, y, step, false);
+            step = 0;
+            //stepAfterEat = 0;
             return B;
+            //	        	x-= 1;
+            //	        	B[x+1][y] = new Doodle(x+1, y, step, false, stepAfter)
         }
         else if(s[c] == 1){
-            B[x+1][y] = new Ant(x+1, y, false);
-            //B[x][y] = 0;
-            //delete this;
+            x+=1;
+            B[x][y] = this;
+            B[x-1][y] = new Ant(x-1, y, step, false);
+            step = 0;
+            //stepAfterEat = 0;
             return B;
         }
         else if(s[c] == 2){
-            B[x][y-1] = new Ant(x, y-1, false);
-            //B[x][y] = 0;
-            //delete this;
+            y-=1;
+            B[x][y] = this;
+            B[x][y+1] = new Ant(x, y+1, step, false);
+            step = 0;
+            //stepAfterEat = 0;
             return B;
         }
         else if(s[c] == 3){
-            B[x][y+1] = new Ant(x, y+1, false);
-            //B[x][y] = 0;
-            //delete this;
+            y+=1;
+            B[x][y] = this;
+            B[x][y-1] = new Ant(x, y-1, step, false);
+            step = 0;
+            //stepAfterEat = 0;
             return B;
         }
     }
@@ -92,6 +102,7 @@ Organism*** Ant::breed(int g, Organism** B[]){
 
 Organism*** Ant::move(int g, Organism** B[]){
 	step +=1;
+    ifNeedBehave = false;
     int count = 0;
     if(x > 0 && !B[x-1][y]){
         count +=1;
@@ -129,27 +140,41 @@ Organism*** Ant::move(int g, Organism** B[]){
         int c = int(rand()%count);
 
         if(s[c] == 0){
-            B[x-1][y] = new Ant(x-1, y, step, false);
-            B[x][y] = 0;
-            delete this;
+            //delete B[x-1][y];
+            x= x-1;
+            B[x][y] = this;
+            B[x+1][y] = 0;
+            //this = B[x-1][y];
             return B;
         }
         else if(s[c] == 1){
-            B[x+1][y] = new Ant(x+1, y, step, false);
-            B[x][y] = 0;
-            delete this;
+            //delete B[x+1][y];
+            //            B[x+1][y] = new Doodle(x+1, y, step, false);
+            //            B[x][y] = 0;
+            //            delete this;
+            x= x+1;
+            B[x][y] = this;
+            B[x-1][y] = 0;
             return B;
         }
         else if(s[c] == 2){
-            B[x][y-1] = new Ant(x, y-1, step, false);
-            B[x][y] = 0;
-            delete this;
+            //delete B[x][y-1];
+            //            B[x][y-1] = new Doodle(x, y-1, step, false);
+            //            B[x][y] = 0;
+            //            delete this;
+            y= y-1;
+            B[x][y] = this;
+            B[x][y+1] = 0;
             return B;
         }
         else if(s[c] == 3){
-            B[x][y+1] = new Ant(x, y+1, step, false);
-            B[x][y] = 0;
-            delete this;
+            //delete B[x][y+1];
+            //            B[x][y+1] = new Doodle(x, y+1, step, false);
+            //            B[x][y] = 0;
+            //            delete this;
+            y= y+1;
+            B[x][y] = this;
+            B[x][y-1] = 0;
             return B;
         }
     }
