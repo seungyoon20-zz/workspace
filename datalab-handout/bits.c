@@ -1,7 +1,7 @@
 /* 
  * CS:APP Data Lab 
  * 
- * <Yixue Wang ywang20>
+ * <Yixue Wang, ywang20>
  * 
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -170,9 +170,8 @@ NOTES:
  *   Max ops: 8
  *   Rating: 2
  */
-int oddBits(int x) {
-  int i = 8 << x;
-  return 0xAAAAAAAA|i;
+int oddBits(void) {
+  return ((0xaa << 24) | (0xaa << 16) | (0xaa << 8) | 0xaa);//use shift to get 0xaaaaaaaa
 }
 /*
  * isTmin - returns 1 if x is the minimum, two's complement number,
@@ -182,7 +181,7 @@ int oddBits(int x) {
  *   Rating: 1
  */
 int isTmin(int x) {
-  return !(x^0xffffffff);
+	return (!(x+x))&(!!x);//tmin is 0x10000000, tmin+tmin equals 0 and tmin is not 0
 }
 /* 
  * bitXor - x^y using only ~ and & 
@@ -192,9 +191,9 @@ int isTmin(int x) {
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-	int t = ~(x&y);
-	int s = ~(~x&~y);
-	return s&t;
+	int a = ~(x&y);
+	int b = ~(~x&~y);
+	return a&b;
 }
 /* 
  * conditional - same as x ? y : z 
@@ -204,7 +203,8 @@ int bitXor(int x, int y) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  int helperNum = !!x << 31 >> 31;//if x is true, helperNum will be 0x11111111, otherwise 0x00000000
+  return (y&helperNum) + (z&(~helperNum));//helperNum determines y or z to be cleaned
 }
 /* 
  * greatestBitPos - return a mask that marks the position of the
@@ -215,7 +215,15 @@ int conditional(int x, int y, int z) {
  *   Rating: 4 
  */
 int greatestBitPos(int x) {
-  return 2;
+	int helperNum;
+	x = x | x >> 1;
+	x = x | x >> 2;
+	x = x | x >> 4;
+	x = x | x >> 8;
+	x = x | x >> 16;
+	//currently x becomes a 32-bits number with all position in the left of greatestBitPos set to 1
+	helperNum = (~x >> 1) | (1 << 31);
+	return x & helperNum;
 }
 /* 
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
@@ -226,7 +234,10 @@ int greatestBitPos(int x) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+	int helperNum = (1 << n) + (1 << 31 >> 31);//in case of overflow
+	x = (x + (helperNum & (x >> 31))) >> n;
+	//if x is positive then no bias, other wise add the bias then right shift
+	return x;
 }
 /* 
  * isNonNegative - return 1 if x >= 0, return 0 otherwise 
@@ -236,7 +247,7 @@ int divpwr2(int x, int n) {
  *   Rating: 3
  */
 int isNonNegative(int x) {
-  return 2;
+  return !(x >> 31);//if x is negative, x >> 31 is 0x11111111, otherwise 0x00000000
 }
 /*
  * satMul2 - multiplies by 2, saturating to Tmin or Tmax if overflow
@@ -248,7 +259,16 @@ int isNonNegative(int x) {
  *   Rating: 3
  */
 int satMul2(int x) {
-  return 2;
+	int tmin = 1 << 31;//0x10000000
+	int sign = x >> 31;
+	int overflow;
+	int helperNum;
+	int twicex = x+ x;
+	overflow = ((twicex ^ x) >> 31);
+	//check if the sign has changed, if changed overflow equals 0x11111111, otherwise 0
+	helperNum = overflow & (sign ^ (~tmin));
+	//if overflow, saturating to tmin or tmax depending on sign
+	return ((twicex & (~overflow)) | helperNum);
 }
 /* 
  * isLess - if x < y  then return 1, else return 0 
@@ -258,7 +278,13 @@ int satMul2(int x) {
  *   Rating: 3
  */
 int isLess(int x, int y) {
-  return 2;
+	int signx = (x >> 31) & 1;
+	int signy = (y >> 31) & 1;
+	int sign = x + (~y + 1);
+	sign = sign >> 31;
+	sign  = sign & 1;
+	//since simply compute x-y may lead to overflow, need to check the sign first
+	return (signx & (!signy)) | ((!(signx ^ signy)) & sign);
 }
 /* 
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
@@ -270,7 +296,10 @@ int isLess(int x, int y) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+	int sign30 = ((x + (~0x30 + 1)) >> 31 ) & 1;
+	int sign39 = ((0x39 + (~x + 1)) >> 31) & 1;
+	//check if x is between 30 and 39
+	return !(sign30 | sign39);
 }
 /*
  * trueThreeFourths - multiplies by 3/4 rounding toward 0,
@@ -279,12 +308,18 @@ int isAsciiDigit(int x) {
  *             trueThreeFourths(-9) = -6
  *             trueThreeFourths(1073741824) = 805306368 (no overflow)
  *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 20
+ *   Max ops: 2
  *   Rating: 4
  */
 int trueThreeFourths(int x)
 {
-  return 2;
+	int helperNumber = x & 3;
+	//3/4 = 1/4 + (1/4)*2
+	int result = (x >> 2 << 1) + (x >> 2);
+	//take care of the possible overflow
+	result = result + ((helperNumber + helperNumber + helperNumber) >> 2);
+	result = result + ((!!helperNumber) & (x >> 31));
+	return result;
 }
 /*
  * ilog2 - return floor(log base 2 of x), where x > 0
@@ -294,7 +329,43 @@ int trueThreeFourths(int x)
  *   Rating: 4
  */
 int ilog2(int x) {
-  return 2;
+	int result = 0;
+	int sign = x >> 31;
+	int helper1 = 0x55;
+	int helper2 = 0x33;
+	int helper4 = 0x0f;
+	int helper8 = 0xff;
+	int helper16 = 0xff;
+
+	x = x | x >> 1;
+	x = x | x >> 2;
+	x = x | x >> 4;
+	x = x | x >> 8;
+	x = x | x >> 16;
+	x = (x & (~sign)) >> 1;
+	//similar to greatestBitPos, set all bits left to the largest 1
+
+	//count how many 1s in the 32-bits integer
+	helper1 = helper1 | (helper1 << 8);
+	helper1 = helper1 | (helper1 << 16);
+
+	helper2 = helper2 | (helper2 << 8);
+	helper2 = helper2 | (helper2 << 16);
+
+	helper4 = helper4 | (helper4 << 8);
+	helper4 = helper4 | (helper4 << 16);
+
+	helper8 = helper8 | (helper8 << 16);
+	helper16 = helper16 | (helper16 << 8);
+
+	result = ((x & helper1) + ((x >> 1) & helper1));
+	result = ((result & helper2) + ((result >> 2) & helper2));
+	result = (result + (result >> 4)) & helper4;
+	result = (result + (result >> 8)) & helper8;
+	result = (result + (result >> 16)) & helper16;
+
+	//the count is right ilog2
+	return result;
 }
 /* 
  * float_neg - Return bit-level equivalent of expression -f for
@@ -308,7 +379,13 @@ int ilog2(int x) {
  *   Rating: 2
  */
 unsigned float_neg(unsigned uf) {
- return 2;
+	int sexp = (uf & (0xff << 23));//isolate expr part
+	int f = uf << 9;//shift until only fraction part left
+	sexp = sexp << 1 >> 24;
+	if(!(~sexp) && f){//if x is NaN
+		return uf;
+	}
+	return uf ^ (1 << 31);//if not just reverse the sign
 }
 /* 
  * float_i2f - Return bit-level equivalent of expression (float) x
@@ -320,7 +397,31 @@ unsigned float_neg(unsigned uf) {
  *   Rating: 4
  */
 unsigned float_i2f(int x) {
-  return 2;
+	int tmin = 0x1 << 31;
+	unsigned sign = x & tmin;
+	unsigned expr = 0x9e;
+	unsigned frac;
+	if(!(x ^ tmin)){ //if the given integer is right tmin, return the floating number equals to tmin
+		return (0xcf << 24);
+	}
+	if(!x){ // if the give interger is right 0, return flaot 0
+		return 0;
+	}
+	if(sign){//cast signed integer to unsigned integer
+		x = (~x)+ 1;
+	}
+	while(!(x & tmin)){//shift until the greatest bit is 1
+		x = x << 1;
+		expr = expr + (tmin >> 31);//each time shift expr minus 1
+	}
+
+	//fraction
+	frac = (x &(~tmin)) >> 8;
+	//take care of the possible overflow
+	if((x & 0x80) && ((x & 0x7f) || (frac & 0x1))){
+		frac = frac + 1;
+	}
+	return (sign + (expr << 23) + frac);
 }
 /* 
  * float_twice - Return bit-level equivalent of expression 2*f for
@@ -334,5 +435,24 @@ unsigned float_i2f(int x) {
  *   Rating: 4
  */
 unsigned float_twice(unsigned uf) {
-  return 2;
+	int exp = uf & (0xff << 23);//isolating expr part
+	int helper = exp << 1 >> 24;//shift expr to right most positions
+	int a = ((0x7f << 16)| (0xff << 8) | 0xff);//a is all-1 frac part
+	int b = (1 << 23);//a helper number for normalized floating
+	int frac = uf & a;//isolate frac part
+	int sign = uf & (1 << 31);//isolate the sign
+	if(!(~helper) || !(helper || frac)){//if x is NaN, return itself remained unchanged
+		return uf;
+	}
+	if(exp){//if normalized float
+		exp = exp + b;
+	}
+	else if(!(frac ^ a)){//if the largest denormalized float
+		frac = frac + (1 << 31 >> 31);//frac minus 1
+		exp = exp + b;
+	}
+	else{//little denormalized number
+		frac = frac << 1;
+	}
+	return (sign | exp | frac);//combine the sign, expr and frac parts together
 }
